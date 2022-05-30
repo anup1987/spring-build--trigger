@@ -5,6 +5,24 @@ steps:
   - name: maven:3-jdk-8
     entrypoint: mvn
     args: ['test']
-# steps:
-#   - name: 'gcr.io/cloud-builders/docker'
-#     args: [ 'build', '-t', 'asia-east1-docker.pkg.dev/sapient-poet-351315/gmshamca/spring-build--trigger/', '.' ]
+steps:
+ # Build the container image
+ - name: 'gcr.io/cloud-builders/docker'
+   args: ['build', '-t', 'gcr.io/$PROJECT_ID/buil-trigger-auto:$COMMIT_SHA', '.']
+ # Push the container image to Container Registry
+ - name: 'gcr.io/cloud-builders/docker'
+   args: ['push', 'gcr.io/$PROJECT_ID/buil-trigger-auto:$COMMIT_SHA']
+ # Deploy container image to Cloud Run
+ - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+   entrypoint: gcloud
+   args:
+   - 'run'
+   - 'deploy'
+   - 'buil-trigger-auto'
+   - '--image'
+   - 'gcr.io/$PROJECT_ID/buil-trigger-auto:$COMMIT_SHA'
+   - '--region'
+   - 'asia-east1'
+ images:
+ - 'gcr.io/$PROJECT_ID/buil-trigger-auto:$COMMIT_SHA'
+    
