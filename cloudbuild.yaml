@@ -5,7 +5,7 @@ steps:
   - name: maven:3-jdk-8
     entrypoint: mvn
     args: ['test']
-steps:
-  - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'asia-east1-docker.pkg.dev/sapient-poet-351315/gmshamca/spring-build--trigger/', '.' ]
+# steps:
+#   - name: 'gcr.io/cloud-builders/docker'
+#     args: [ 'build', '-t', 'asia-east1-docker.pkg.dev/sapient-poet-351315/gmshamca/spring-build--trigger/', '.' ]
     
