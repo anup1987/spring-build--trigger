@@ -7,5 +7,5 @@ steps:
     args: ['test']
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'asia-east1-docker.pkg.dev/sapient-poet-351315/gmshamca/spring-build--trigger/blob/main/pom.xml', '.' ]
+    args: [ 'build', '-t', 'asia-east1-docker.pkg.dev/sapient-poet-351315/gmshamca/spring-build--trigger/', '.' ]
     
